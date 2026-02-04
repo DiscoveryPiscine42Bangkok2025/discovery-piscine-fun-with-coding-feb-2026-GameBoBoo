@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input, select {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="left">
+    <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input type="text" id="right">
+
+    <input type="submit" value="Try me!" id="btn">
+
+    <script>
+        const left = document.getElementById("left");
+        const right = document.getElementById("right");
+        const operator = document.getElementById("operator");
+        const button = document.getElementById("btn");
+
+        button.addEventListener("click", function () {
+            const a = left.value;
+            const b = right.value;
+
+            // ตรวจว่าเป็นเลขจำนวนเต็มบวก
+            if (!isPositiveInteger(a) || !isPositiveInteger(b)) {
+                alert("Error :(");
+                return;
+            }
+
+            const x = parseInt(a);
+            const y = parseInt(b);
+            let result;
+
+            if ((operator.value === "/" || operator.value === "%") && y === 0) {
+                alert("It's over 9000!");
+                console.log("It's over 9000!");
+                return;
+            }
+
+            switch (operator.value) {
+                case "+":
+                    result = x + y;
+                    break;
+                case "-":
+                    result = x - y;
+                    break;
+                case "*":
+                    result = x * y;
+                    break;
+                case "/":
+                    result = x / y;
+                    break;
+                case "%":
+                    result = x % y;
+                    break;
+            }
+
+            alert(result);
+            console.log(result);
+        });
+
+        function isPositiveInteger(value) {
+            return /^\d+$/.test(value);
+        }
+
+        setInterval(function () {
+            alert("Please, use me...");
+        }, 30000);
+    </script>
+
+</body>
+</html>
