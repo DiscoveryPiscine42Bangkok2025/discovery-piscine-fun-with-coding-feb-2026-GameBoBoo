@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
 
+<input id="left">
+<select id="op">
+    <option>+</option>
+    <option>-</option>
+    <option>*</option>
+    <option>/</option>
+    <option>%</option>
+</select>
+<input id="right">
+<button id="btn">Try me!</button>
+
+<script>
+    function isPositiveInt(v) {
+        return /^\d+$/.test(v);
+    }
+
+    $("#btn").click(function () {
+        const a = $("#left").val();
+        const b = $("#right").val();
+        const op = $("#op").val();
+
+        if (!isPositiveInt(a) || !isPositiveInt(b)) {
+            alert("Error :(");
+            return;
+        }
+
+        const x = parseInt(a);
+        const y = parseInt(b);
+
+        if ((op === "/" || op === "%") && y === 0) {
+            alert("It's over 9000!");
+            console.log("It's over 9000!");
+            return;
+        }
+
+        let result;
+        switch (op) {
+            case "+": result = x + y; break;
+            case "-": result = x - y; break;
+            case "*": result = x * y; break;
+            case "/": result = x / y; break;
+            case "%": result = x % y; break;
+        }
+
+        alert(result);
+        console.log(result);
+    });
+
+    setInterval(() => {
+        alert("Please, use me...");
+    }, 30000);
+</script>
+
+</body>
+</html>
